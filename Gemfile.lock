@@ -111,6 +111,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  dbf
   jquery-rails
   rails (= 3.2.22.5)
   rgeo

@@ -7,9 +7,15 @@ gem 'rails', '3.2.22.5'
 
 gem 'sqlite3'
 
+# RGeo is a geospatial data library for Ruby
 gem 'rgeo'
+# RGeo module that provides parsing and analyzing of shapefiles, exposes the data to you as RGeo geometric objects
 gem 'rgeo-shapefile'
+# RGeo module that provides GeoJSON encoding and decoding
 gem 'rgeo-geojson'
+# RGeo module that facilitates the reading of dBASE attributes in shapefiles
+gem 'dbf'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
