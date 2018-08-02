@@ -81,6 +81,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     rgeo (1.1.1)
+    rgeo-geojson (2.0.0)
+      rgeo (~> 1.0)
     rgeo-shapefile (1.0.0)
       dbf (~> 3.0)
       rgeo (~> 1.0)
@@ -112,6 +114,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 3.2.22.5)
   rgeo
+  rgeo-geojson
   rgeo-shapefile
   sass-rails (~> 3.2.3)
   sqlite3
