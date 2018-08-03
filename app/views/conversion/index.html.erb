@@ -1,2 +1,4 @@
-<p><strong>Shapefile: </strong><%= @shapefile %></p>
-<p><strong>GeoJson: </strong><%= @geojson %></p>
+<%= form_tag({action: :create}, multipart: true) do %>
+  <%= file_field_tag 'files[]', multiple: true %>
+	<%= submit_tag("Submit") %>
+<% end %>
