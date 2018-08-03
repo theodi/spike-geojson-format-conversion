@@ -6,30 +6,30 @@ class ConversionController < ApplicationController
   end
 
 	def create
-		# Get files from form upload
 		files = []
-
+		# Get files from form upload and write to public directory
 		if !params[:files].nil?
 		  params[:files].each{ |file|
-		  	files << file.tempfile
+		  	shapefile = file.tempfile.read
+				filename = file.original_filename
+				files << filename
+				File.open(File.join(Rails.root, 'public', 'tmp', filename), 'wb') { |f| f.write shapefile }
 		  }
 		end
-		puts files
 
-		# NEXT STEPS: Provide RGeo with the .shp file that was uploaded
-		# Ensure that RGeo is seeing the supplementary files
+		# Get uploaded shp filename for passing to RGeo
+		shp_extract = files.select{ |i| i[/\.shp$/] }
+		shp_file = shp_extract[0]
+		path = Rails.root.join("public/tmp/#{shp_file}")
 
-		# Factory to set SRID
-		# Is this being set correctly?
+		# Factory to set SRID - Is this being set correctly?
 		factory = RGeo::Geographic.spherical_factory(:srid => 4326)
 
 		# Array for holding each created 'Feature' from the Shapefile
 		features = []
 
 		# Open Shapefile with SRID factory
-		RGeo::Shapefile::Reader.open('stations.shp', :factory => factory) do |file|
-			# This variable is not nescessary, just here for displaying process purposes
-			@shapefile = file
+		RGeo::Shapefile::Reader.open(path, :factory => factory) do |file|
 
 			# Loop through loaded shapefile to get each 'record'
 			file.each do |record|
@@ -54,5 +54,9 @@ class ConversionController < ApplicationController
 
 		# Encode 'Feature Collection' using GeoJSON Gem and convert to JSON
 		@geojson = RGeo::GeoJSON.encode(feature_collection).to_json
+
+		# Clear shp files from public/tmp
+		# S3 should be employed here for file storage
+		`rm -fr public/tmp/*`
 	end
 end
