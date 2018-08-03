@@ -5,6 +5,8 @@ gem 'rails', '3.2.22.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'sqlite3'
+
 # RGeo is a geospatial data library for Ruby
 gem 'rgeo'
 # RGeo module that provides parsing and analyzing of shapefiles, exposes the data to you as RGeo geometric objects
