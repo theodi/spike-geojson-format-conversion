@@ -1,13 +1,14 @@
 class ConversionController < ApplicationController
 	require 'rgeo/shapefile'
 	require 'rgeo/geo_json'
+	require 'json'
 
   def index
   end
 
 	def create
 		files = []
-		# Get files from form upload and write to public directory
+		# Get files from form upload and write to '/public/tmp' directory
 		if !params[:files].nil?
 		  params[:files].each{ |file|
 		  	shapefile = file.tempfile.read
@@ -53,7 +54,8 @@ class ConversionController < ApplicationController
 		feature_collection = RGeo::GeoJSON::FeatureCollection.new(features)
 
 		# Encode 'Feature Collection' using GeoJSON Gem and convert to JSON
-		@geojson = RGeo::GeoJSON.encode(feature_collection).to_json
+		@geojson = RGeo::GeoJSON.encode(feature_collection)
+		render json: JSON.pretty_generate(@geojson)
 
 		# Clear shp files from public/tmp
 		# S3 should be employed here for file storage

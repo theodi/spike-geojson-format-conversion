@@ -11,3 +11,29 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+	background-color: #EAEAEA;
+}
+
+input {
+	display: block;
+	margin-bottom: 16px;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	grid-auto-rows: 200px;
+	grid-template-areas:
+	 ". a a ."
+	 ". a a .";
+}
+
+.item1 {
+	width: 30vw;
+	grid-area: a;
+	align-self: center;
+	justify-self: center;
+}
