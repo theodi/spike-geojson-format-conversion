@@ -1,0 +1,10 @@
+<div class="wrapper">
+	<div class="item1">
+		<h2><%= @title %></h2>
+		<p>Select and submit a .shp file and all corresponding files </br> (.dbf, .shx, .prj), if present.</p>
+		<%= form_tag({action: :create}, multipart: true) do %>
+		  <%= file_field_tag 'files[]', multiple: true %>
+			<%= submit_tag("Submit") %>
+		<% end %>
+	</div>
+</div>
