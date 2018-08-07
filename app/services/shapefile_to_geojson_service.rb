@@ -16,14 +16,14 @@ class ShapefileToGeojsonService
 
 	private
 
-	# Save shapefile to 'public/tmp'
+	# Save shapefile to 'public/tmp' - Temporary measure - employ S3 for file storage
 	def save_shapefiles
 		@files = []
 
 		@shapefiles.each do |file|
 			shapefile = file.tempfile.read
 			shapefile_name = file.original_filename
-			@files << filename
+			@files << shapefile_name
 			File.open(File.join(Rails.root, 'public', 'tmp', shapefile_name), 'wb') { |f| f.write shapefile }
 		end
 	end
@@ -31,7 +31,7 @@ class ShapefileToGeojsonService
 	# Creatures features from each Shapefile object
 	def create_features_collection
 		features = []
-		
+
 		# Factory to set SRID - Is this being set correctly?
 		factory = RGeo::Geographic.spherical_factory(:srid => 4326)
 
