@@ -54,11 +54,14 @@ class ConversionController < ApplicationController
 		feature_collection = RGeo::GeoJSON::FeatureCollection.new(features)
 
 		# Encode 'Feature Collection' using GeoJSON Gem and convert to JSON
-		@geojson = RGeo::GeoJSON.encode(feature_collection)
-		render json: JSON.pretty_generate(@geojson)
+		@geojson = RGeo::GeoJSON.encode(feature_collection).to_json
+
+		# Uncomment to render as JSON
+		# render json: JSON.pretty_generate(@geojson)
 
 		# Clear shp files from public/tmp
 		# S3 should be employed here for file storage
 		`rm -fr public/tmp/*`
 	end
+
 end
