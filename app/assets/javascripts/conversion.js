@@ -24,11 +24,5 @@ function checkForShpFile(fileList) {
  	let fileName = fileList.find(function(element) {
 		return element.includes('.shp');
 	})
-	alert(fileName)
-	if (fileName) {
-		let extension = fileName.substr((fileName.lastIndexOf('.') +1));
-		return true
-	} else {
-		return false
-	}
+	return fileName ? fileName.substr((fileName.lastIndexOf('.') +1)) : false;
 }
