@@ -5,7 +5,7 @@ function validateForm() {
 
 	if (files.length !== 0) {
 		getFileNames(files);
-		return checkForShpFile(fileList)
+		return checkForShpFile(fileList);
 	} else {
 		document.querySelector('form').onsubmit = function(e) {
 		  e.preventDefault();
@@ -21,9 +21,14 @@ function getFileNames(files) {
 }
 
 function checkForShpFile(fileList) {
-	let fileExtension
-	fileList.filter(function(file){
-		fileExtension = file.indexOf('.shp') !== -1 ? true : false
+ 	let fileName = fileList.find(function(element) {
+		return element.includes('.shp');
 	})
-	return fileExtension
+	alert(fileName)
+	if (fileName) {
+		let extension = fileName.substr((fileName.lastIndexOf('.') +1));
+		return true
+	} else {
+		return false
+	}
 }
