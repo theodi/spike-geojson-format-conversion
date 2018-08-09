@@ -31,9 +31,7 @@ input {
 	grid-auto-rows: 200px;
 	grid-template-areas:
 	 ". a a ."
-	 ". a a ."
-	 ". b b ."
-	 ". b b .";
+	 ". a a .";
 }
 
 /* Form - Shapefile upload */
