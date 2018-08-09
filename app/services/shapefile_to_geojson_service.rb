@@ -16,7 +16,8 @@ class ShapefileToGeojsonService
 
 	private
 
-	# Save shapefile to 'public/tmp' - Temporary measure - employ S3 for file storage
+	# Save shapefile to 'public/tmp'
+	# DEFUNCT with migration to Octopub - S3
 	def save_shapefiles
 		@files = []
 
@@ -57,17 +58,21 @@ class ShapefileToGeojsonService
 		@features_collection = add_features_to_collection(features)
 	end
 
-	# Clear shp files from public/tmp - Temporary measure - employ S3 for file storage
+	# Clear shp files from public/tmp
+	# DEFUNCT with migration to Octopub - S3
 	def delete_temporary_files
 		`rm -fr public/tmp/*`
 	end
 
 	# Encode 'Feature Collection' using GeoJSON Gem and convert to JSON
 	def convert_to_geojson
-		RGeo::GeoJSON.encode(@features_collection).to_json
+		geojson = RGeo::GeoJSON.encode(@features_collection).to_json
+		save_geojson_to_file(geojson)
+		geojson
 	end
 
 	# Get uploaded shp filename
+	# DEFUNCT with migration to Octopub - S3
 	def get_shp_file(files)
 		shp_extract = files.select{ |i| i[/\.shp$/] }
 		shp_file = shp_extract[0]
@@ -77,6 +82,12 @@ class ShapefileToGeojsonService
 	# Create a 'Features Collection' using 'Features'
 	def add_features_to_collection(features)
 		RGeo::GeoJSON::FeatureCollection.new(features)
+	end
+
+	# DEFUNCT with migration to Octopub - S3
+	def save_geojson_to_file(geojson)
+		geojsonfile = File.new("public/geojson/tmp.geojson", "w")
+		geojsonfile.write(geojson)
 	end
 
 end

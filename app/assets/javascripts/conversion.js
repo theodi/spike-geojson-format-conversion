@@ -1,3 +1,5 @@
+// Validation of file upload and form submission
+
 let fileList;
 
 function validateForm() {
@@ -26,3 +28,21 @@ function checkForShpFile(fileList) {
 	})
 	return fileName ? fileName.substr((fileName.lastIndexOf('.') +1)) : false;
 }
+
+// Leaflet.js mapping
+$( document ).ready(function() {
+	let map = L.map('mapid').setView([0, 0], 5);
+
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+	$.getJSON("geojson/tmp.geojson",function(data){
+		let datalayer = L.geoJson(data ,{
+			onEachFeature: function(feature, featureLayer) {
+				featureLayer.bindPopup(feature.properties);
+			}
+		}).addTo(map);
+		map.fitBounds(datalayer.getBounds());
+	});
+});

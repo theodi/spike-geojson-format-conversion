@@ -1,10 +1,12 @@
 <div class='wrapper'>
-	<div class='item1'>
-		<h2><%= @title %></h2>
-		<p>Select and submit a .shp file and all corresponding files </br> (.dbf, .shx, .prj), if present.</p>
+	<div class='shapefile-form'>
+		<div class="shapefile-info">
+			<h2><%= @title %></h2>
+			<p>Browse and select a .shp file and all corresponding files </br> (.dbf, .shx, .prj, etc...).</p>
+		</div>
 		<%= form_tag({action: :create}, multipart: true, name: 'converter') do %>
 		  <%= file_field_tag 'files[]', multiple: true %>
-			<%= submit_tag('Submit', onclick: "return validateForm();") %>
+			<%= submit_tag('Submit', class: 'shapefile-submit', onclick: "return validateForm();") %>
 		<% end %>
 	</div>
 </div>

@@ -8,12 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require leaflet
  *= require_self
  *= require_tree .
  */
 
+/* Base styles */
 body {
-	background-color: #EAEAEA;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background-color: #FFFFFF;
 }
 
 input {
@@ -28,12 +31,58 @@ input {
 	grid-auto-rows: 200px;
 	grid-template-areas:
 	 ". a a ."
-	 ". a a .";
+	 ". a a ."
+	 ". b b ."
+	 ". b b .";
 }
 
-.item1 {
-	width: 40vw;
+/* Form - Shapefile upload */
+.shapefile-form {
+	width: 30vw;
 	grid-area: a;
 	align-self: center;
 	justify-self: center;
+	background-color: #EAEAEA;
+	border-radius: 12px;
+	padding: 2em;
+}
+
+.shapefile-info {
+	margin-bottom: 2em;
+}
+
+.shapefile-submit {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 5px 16px;
+		margin-top: 0.6em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+		border-radius: 12px;
+		float: right;
+}
+
+/* Map */
+#mapid {
+	width: 50vw;
+	grid-area: a;
+	align-self: center;
+	justify-self: center;
+	background-color: #EAEAEA;
+	border-radius: 12px;
+	height: 30vw;
+	margin-top: 12em;
+}
+
+.geojson {
+	width: 30vw;
+	grid-area: b;
+	align-self: center;
+	justify-self: center;
+	background-color: #EAEAEA;
+	border-radius: 12px;
+	padding: 2em;
 }
