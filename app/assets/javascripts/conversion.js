@@ -40,7 +40,11 @@ $( document ).ready(function() {
 	$.getJSON("geojson/tmp.geojson",function(data){
 		let datalayer = L.geoJson(data ,{
 			onEachFeature: function(feature, featureLayer) {
-				featureLayer.bindPopup(feature.properties);
+				popupContent = []
+				for (var key in feature.properties) {
+					popupContent.push(key + ": " + feature.properties[key]);
+				}
+				featureLayer.bindPopup(popupContent.join("<br/>"));
 			}
 		}).addTo(map);
 		map.fitBounds(datalayer.getBounds());
