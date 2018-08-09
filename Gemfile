@@ -15,6 +15,8 @@ gem 'rgeo-shapefile'
 gem 'rgeo-geojson'
 # RGeo module that facilitates the reading of dBASE attributes in shapefiles
 gem 'dbf'
+# Leaflet.js for geoJSON mapping
+gem 'leaflet-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
