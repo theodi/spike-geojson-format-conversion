@@ -87,3 +87,7 @@ input {
 	border-radius: 12px;
 	margin-bottom: 3em;
 }
+
+pre {
+	padding-left: 3em;
+}
