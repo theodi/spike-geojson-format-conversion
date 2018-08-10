@@ -1,7 +1,12 @@
 <div class="wrapper">
-	<div id="mapid"></div>
-	<%= link_to "Download geoJSON file", "geojson/tmp.geojson" %>
-	<!-- <div class="geojson">
-		<%= @geojson %>
-	</div> -->
+	<div class="map-meta">
+		<%= link_to "Download geoJSON", "geojson/tmp.geojson" %>
+		<%= link_to "Convert another Shapefile", new_conversion_path, class: 'new-conversion' %>
+	</div>
+	<div id="mapid" class="map"></div>
+	<div class="geojson">
+		<pre>
+			<%= @beautified_json %>
+		</pre>
+	</div>
 </div>

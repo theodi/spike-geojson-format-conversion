@@ -5,7 +5,8 @@ class ConversionController < ApplicationController
 
 	def create
 		shapefiles = params[:files]
-		@geojson = ShapefileToGeojsonService.new(shapefiles).perform
+		geojson = ShapefileToGeojsonService.new(shapefiles).perform
+		@beautified_json = JSON.pretty_generate(JSON.parse(geojson))
 		render :show
 	end
 

@@ -25,13 +25,9 @@ input {
 }
 
 .wrapper {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 10px;
-	grid-auto-rows: 200px;
-	grid-template-areas:
-	 ". a a ."
-	 ". a a .";
+	display: flex;
+  flex-direction: column;
+	margin-top: 2em;
 }
 
 /* Form - Shapefile upload */
@@ -64,23 +60,30 @@ input {
 }
 
 /* Map */
-#mapid {
+.map {
 	width: 50vw;
-	grid-area: a;
 	align-self: center;
 	justify-self: center;
-	background-color: #EAEAEA;
 	border-radius: 12px;
 	height: 30vw;
-	margin-top: 12em;
+	margin-bottom: 2em;
+}
+
+.map-meta {
+	width: 50vw;
+	align-self: center;
+	margin-bottom: 0.6em;
+}
+
+.new-conversion {
+	float: right;
 }
 
 .geojson {
-	width: 30vw;
-	grid-area: b;
+	width: 50vw;
 	align-self: center;
 	justify-self: center;
 	background-color: #EAEAEA;
 	border-radius: 12px;
-	padding: 2em;
+	margin-bottom: 3em;
 }
