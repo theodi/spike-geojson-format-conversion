@@ -1,6 +1,9 @@
 # Prototyping a Shapefile to geoJSON conversion tool
 
-### Setup
+### About
+This is a spike of converting shapefiles to geojson
+
+### Process
 1) Add to Gemfile `rgeo`, `rgeo-shapefile`, `rgeo-geojson`, `dbf` and `leaflet-rails`
 2) Run `bundle install`
 
