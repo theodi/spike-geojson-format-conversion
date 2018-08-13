@@ -32,3 +32,7 @@ end
 
 gem 'jquery-rails', '>= 4.3.3'
 
+group :production do
+  gem 'puma'
+end
+
