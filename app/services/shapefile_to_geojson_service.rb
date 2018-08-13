@@ -1,7 +1,6 @@
 class ShapefileToGeojsonService
 	require 'rgeo/shapefile'
 	require 'rgeo/geo_json'
-	require 'json'
 
 	def initialize(shapefiles)
 		@shapefiles = shapefiles
@@ -33,7 +32,7 @@ class ShapefileToGeojsonService
 	def create_features_collection
 		features = []
 
-		# Factory to set SRID - Is this being set correctly?
+		# Factory to set SRID (WGS84)- Is this being set correctly? Discuss
 		factory = RGeo::Geographic.spherical_factory(:srid => 4326)
 
 		# Open Shapefile with SRID factory
