@@ -15,7 +15,7 @@ class ShapefileToGeojsonService
 
 	private
 
-	# Save shapefile to 'public/tmp'
+	# Save shapefile to 'tmp'
 	# DEFUNCT with migration to Octopub - S3
 	def save_shapefiles
 		@files = []
@@ -24,7 +24,7 @@ class ShapefileToGeojsonService
 			shapefile = file.tempfile.read
 			shapefile_name = file.original_filename
 			@files << shapefile_name
-			File.open(File.join(Rails.root, 'public', 'tmp', shapefile_name), 'wb') { |f| f.write shapefile }
+			File.open(File.join(Rails.root, 'tmp', shapefile_name), 'wb') { |f| f.write shapefile }
 		end
 	end
 
@@ -57,10 +57,10 @@ class ShapefileToGeojsonService
 		@features_collection = add_features_to_collection(features)
 	end
 
-	# Clear shp files from public/tmp
+	# Clear shp files from tmp
 	# DEFUNCT with migration to Octopub - S3
 	def delete_temporary_files
-		`rm -fr public/tmp/*`
+		`rm -fr tmp/*`
 	end
 
 	# Encode 'Feature Collection' using GeoJSON Gem and convert to JSON
@@ -75,7 +75,7 @@ class ShapefileToGeojsonService
 	def get_shp_file(files)
 		shp_extract = files.select{ |i| i[/\.shp$/] }
 		shp_file = shp_extract[0]
-		@path = Rails.root.join("public/tmp/#{shp_file}")
+		@path = Rails.root.join("tmp/#{shp_file}")
 	end
 
 	# Create a 'Features Collection' using 'Features'
@@ -85,7 +85,7 @@ class ShapefileToGeojsonService
 
 	# DEFUNCT with migration to Octopub - S3
 	def save_geojson_to_file(geojson)
-		geojsonfile = File.new("public/geojson/tmp.geojson", "w")
+		geojsonfile = File.new("tmp/tmp.geojson", "w")
 		geojsonfile.write(geojson)
 	end
 
