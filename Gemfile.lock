@@ -74,6 +74,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    puma (3.12.0)
     rack (2.0.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -147,6 +148,7 @@ DEPENDENCIES
   dbf
   jquery-rails (>= 4.3.3)
   leaflet-rails
+  puma
   rails (= 5.0.0)
   rgeo
   rgeo-geojson
